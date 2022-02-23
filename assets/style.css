@@ -1,0 +1,68 @@
+
+:root {
+   --primary: #142429;
+   --secondary: #2ea1b8;
+}
+
+* {
+   font-family: 'Poppins', sans-serif;
+}
+
+body {
+   margin: 0;
+   padding: 0;
+   /* background: linear-gradient(to right, #142529, #365F6D); */
+   /* background-image: linear-gradient(
+      60deg,
+      hsl(191deg 34% 12%) 0%,
+      hsl(190deg 33% 15%) 21%,
+      hsl(192deg 34% 17%) 39%,
+      hsl(194deg 33% 20%) 55%,
+      hsl(195deg 34% 28%) 68%,
+      hsl(195deg 33% 36%) 78%,
+      hsl(194deg 33% 44%) 100%
+   );    */
+   background:#142529;
+   background-image: radial-gradient(at 40% 20%, hsla(194,47%,26%,1) 0, transparent 50%), radial-gradient(at 80% 0%, #2ea1b8 0, transparent 50%), radial-gradient(at 0% 50%, hsla(195,61%,28%,1) 0, transparent 50%), radial-gradient(at 100% 84%, hsla(196,45%,22%,1) 0, transparent 50%), radial-gradient(at 0% 100%, hsla(194,74%,37%,1) 0, transparent 50%), radial-gradient(at 80% 100%, hsla(193,68%,40%,1) 0, transparent 50%), radial-gradient(at 0% 0%, hsla(195,57%,50%,1) 0, transparent 50%);
+}
+
+/* HERO STYLES */
+.hero {
+   color: white;
+   /* background: linear-gradient(to top left, #142529, #22596b); */
+   background:#142529;
+   background-image: radial-gradient(at 40% 20%, hsla(194,47%,26%,1) 0, transparent 50%), radial-gradient(at 80% 0%, #2ea1b8 0, transparent 50%), radial-gradient(at 0% 50%, hsla(195,61%,28%,1) 0, transparent 50%), radial-gradient(at 100% 84%, hsla(196,45%,22%,1) 0, transparent 50%), radial-gradient(at 0% 100%, hsla(194,74%,37%,1) 0, transparent 50%), radial-gradient(at 80% 100%, hsla(193,68%,40%,1) 0, transparent 50%), radial-gradient(at 0% 0%, hsla(195,57%,50%,1) 0, transparent 50%);
+   border-bottom: 15px solid var(--primary);
+   padding: 1.5% 2%;
+}
+
+.hero h1 {
+   font-weight: 500;
+}
+
+/* NAVIGATION SECTION STYLES */
+/* SEARCH SECTION */
+.search {
+   border-bottom: 3px solid var(--primary);
+}
+.btn-search {
+   padding: 6px 50px;
+   margin-top: 15px;
+}
+
+.btn-search:hover {
+   font-weight: bold;
+   color: white;
+   /* background-color: var(--primary); */
+   background: linear-gradient(to bottom right, #365F6D, #142529);
+   transition: all 0.6s ease-in-out;
+   opacity: 0.75;
+}
+
+.btn-search:not(:hover) {
+   font-weight: bold;
+   color: white;
+   /* background: linear-gradient(to bottom right, #365F6D, #142529); */
+   background-color: var(--primary);
+   transition: all 0.7s ease-in-out;
+}
