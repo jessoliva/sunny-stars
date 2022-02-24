@@ -28,7 +28,23 @@ let userCities = [];
 // reference select element
 const selectEl = document.getElementById('cities');
 
+// add cities ass options to select dropdown
+function searchedCities(event) {
 
+    // prevent refresh of page after button click
+    event.preventDefault();
+
+    // get value for searched cities
+    // cannot use textContent with input element
+    let citySearch = inputEl.value;
+
+    // push value searched into userCities array
+    userCities.push(citySearch);
+
+    // run selectCities() to display searched cities in select dropdown
+    selectCities();
+};
+searchBtn.addEventListener('click', searchedCities);
 
 // get the searchCities and save them to local storage
 // loop through userCities and add generate options for select dropdown
