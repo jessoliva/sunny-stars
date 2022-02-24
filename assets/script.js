@@ -33,6 +33,8 @@ const selectEl = document.getElementById('cities');
 // get user city searched and push into searchedCities array
 function citiesDropDown(event) {
 
+    console.log('citiesDropDown beginning ', searchedCities)
+
     // prevent refresh of page after button click
     event.preventDefault();
 
@@ -42,30 +44,68 @@ function citiesDropDown(event) {
     // lowercase the city
     citySearched = citySearched.toLowerCase();
 
-    // push value searched into userCities array
-    searchedCities.push(citySearched);
+    // for (i = 0; i < searchedCities.length; i++) {
 
-    // run selectCities() to display searched cities in select dropdown
-    selectCities();
+    //     // if no city is entered or city already exists in the array, the don't push that city in there
+    //     if (citySearched === null || citySearched === searchedCities[i]) {
+    //         return;
+    //     }
+    //     // push value searched into userCities array
+    //     else {
+    //         searchedCities.push(citySearched);
+    //     }
+    // }
+
+    // if no city is entered or city already exists in the array, the don't push that city in there
+    if (citySearched === null || citySearched === '') {
+        alert('Please Enter A City');
+    }
+    // push value searched into userCities array
+    else {
+        searchedCities.push(citySearched);
+    }
+
+    console.log('citiesDropDown second ', searchedCities)
 
     // run saveCities() to save cities to local storage
     saveCities();
 };
-searchBtn.addEventListener('click', citiesDropDown);
+searchBtn.addEventListener('click', citiesDropDown, loadCities);
+
+// load saved cities from local storage
+function loadCities() {
+
+    // load saved cities
+    let savedCities = localStorage.getItem('Cities');
+    // turn savedCities into array 
+    savedCities = JSON.parse(savedCities);
+
+    // if there are no cities saved, do nothing
+    if (savedCities === null) {
+        return;
+    }
+    // else if there are cities saved, add them to the searchedCities array
+    else {
+        searchedCities = savedCities;
+    }
+
+    console.log('loadCities ', searchedCities);
+
+}
+loadCities();
 
 // get the searchCities and save them to local storage
-// save the cities searched
 function saveCities() {
 
-    console.log('savedCities ', searchedCities);
-
     // save userCities array to local storage
-    localStorage.setItem('Cities', JSON.stringify(searchedCities));
+    localStorage.setItem('Cities', JSON.stringify(searchedCities).toLowerCase());
 
 };
 
 // loop through userCities and add generate options for select dropdown
 function selectCities() {
+
+    console.log('selectCities is ', searchedCities);
 
     for(i = 0; i < searchedCities.length; i++) {
 
@@ -83,6 +123,7 @@ function selectCities() {
         selectEl.append(optionEl); 
     }
 };
+selectCities();
 
 // NEED TO GIVE CREDIT TO
 // https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
