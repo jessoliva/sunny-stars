@@ -22,44 +22,72 @@ const searchBtn = document.getElementById('search-city');
 // reference input element 
 const inputEl = document.getElementById('city');
 
+// citiesDropDown() & saveCities()  & selectCities()
 // empty array to hold user searched cities
-let userCities = [];
-//
+let searchedCities = [];
+
+// selectCities()
 // reference select element
 const selectEl = document.getElementById('cities');
 
-// add cities ass options to select dropdown
-function searchedCities(event) {
+// get user city searched and push into searchedCities array
+function citiesDropDown(event) {
 
     // prevent refresh of page after button click
     event.preventDefault();
 
     // get value for searched cities
     // cannot use textContent with input element
-    let citySearch = inputEl.value;
+    let citySearched = inputEl.value;
+    // lowercase the city
+    citySearched = citySearched.toLowerCase();
 
     // push value searched into userCities array
-    userCities.push(citySearch);
+    searchedCities.push(citySearched);
 
     // run selectCities() to display searched cities in select dropdown
     selectCities();
+
+    // run saveCities() to save cities to local storage
+    saveCities();
 };
-searchBtn.addEventListener('click', searchedCities);
+searchBtn.addEventListener('click', citiesDropDown);
 
 // get the searchCities and save them to local storage
+// save the cities searched
+function saveCities() {
+
+    console.log('savedCities ', searchedCities);
+
+    // save userCities array to local storage
+    localStorage.setItem('Cities', JSON.stringify(searchedCities));
+
+};
+
 // loop through userCities and add generate options for select dropdown
 function selectCities() {
 
-    for(i = 0; i < userCities.length; i++) {
+    for(i = 0; i < searchedCities.length; i++) {
+
+        // capitalize each city
+        searchedCities[i] = capitalize(searchedCities[i]);
 
         // create the option element
         let optionEl = document.createElement('option');
         // let the value of the option equal the array element
-        optionEl.value = userCities[i];
+        optionEl.value = searchedCities[i].toLowerCase();
         // let the text of the option equal the array element
-        optionEl.textContent = userCities[i]
+        optionEl.textContent = searchedCities[i];
 
         // append option element to selectEl
         selectEl.append(optionEl); 
     }
 };
+
+// NEED TO GIVE CREDIT TO
+// https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
+// capitalize city to display nicely
+function capitalize(city) {
+    return city.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
+}
+
