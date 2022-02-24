@@ -34,6 +34,7 @@ const selectEl = document.getElementById('cities');
 function citiesDropDown(event) {
 
     console.log('citiesDropDown beginning ', searchedCities)
+    // convert cities
 
     // prevent refresh of page after button click
     event.preventDefault();
@@ -44,33 +45,31 @@ function citiesDropDown(event) {
     // lowercase the city
     citySearched = citySearched.toLowerCase();
 
-    // for (i = 0; i < searchedCities.length; i++) {
-
-    //     // if no city is entered or city already exists in the array, the don't push that city in there
-    //     if (citySearched === null || citySearched === searchedCities[i]) {
-    //         return;
-    //     }
-    //     // push value searched into userCities array
-    //     else {
-    //         searchedCities.push(citySearched);
-    //     }
-    // }
+    console.log('citiesDropDown before if statements ', searchedCities);
 
     // if no city is entered or city already exists in the array, the don't push that city in there
     if (citySearched === null || citySearched === '') {
         alert('Please Enter A City');
     }
-    // push value searched into userCities array
-    else {
+    // if the city searched by the user is NOT in the array, then push it
+    else if (!searchedCities.includes(citySearched)) {
         searchedCities.push(citySearched);
-    }
 
-    console.log('citiesDropDown second ', searchedCities)
+        // reset selectEl so cities aren't duplicated in dropdown
+        selectEl.innerHTML = '<option value="Select a City">Searched Cities</option>';
+
+        // run selectCities() here to add city searched to dropdown
+        selectCities();
+    }
+    // include() returns true if the element is contained in the array, and false if otherwise
+
+    console.log('citiesDropDown after if statements ', searchedCities)
 
     // run saveCities() to save cities to local storage
     saveCities();
+
 };
-searchBtn.addEventListener('click', citiesDropDown, loadCities);
+searchBtn.addEventListener('click', citiesDropDown);
 
 // load saved cities from local storage
 function loadCities() {
@@ -88,9 +87,6 @@ function loadCities() {
     else {
         searchedCities = savedCities;
     }
-
-    console.log('loadCities ', searchedCities);
-
 }
 loadCities();
 
@@ -104,20 +100,16 @@ function saveCities() {
 
 // loop through userCities and add generate options for select dropdown
 function selectCities() {
-
     console.log('selectCities is ', searchedCities);
-
+    
     for(i = 0; i < searchedCities.length; i++) {
-
-        // capitalize each city
-        searchedCities[i] = capitalize(searchedCities[i]);
 
         // create the option element
         let optionEl = document.createElement('option');
         // let the value of the option equal the array element
         optionEl.value = searchedCities[i].toLowerCase();
         // let the text of the option equal the array element
-        optionEl.textContent = searchedCities[i];
+        optionEl.textContent = capitalize(searchedCities[i]);
 
         // append option element to selectEl
         selectEl.append(optionEl); 
