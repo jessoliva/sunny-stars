@@ -14,3 +14,36 @@
 
 // HINT: Abstract API call to a function with a city as the parameter to be passed into the url 
 
+// when i create a drop down menu, add the searched for cities into an array, loop through the array to create the option for the drop down menu
+
+// selectCities()
+// reference search city button 
+const searchBtn = document.getElementById('search-city');
+// reference input element 
+const inputEl = document.getElementById('city');
+
+// empty array to hold user searched cities
+let userCities = [];
+//
+// reference select element
+const selectEl = document.getElementById('cities');
+
+
+
+// get the searchCities and save them to local storage
+// loop through userCities and add generate options for select dropdown
+function selectCities() {
+
+    for(i = 0; i < userCities.length; i++) {
+
+        // create the option element
+        let optionEl = document.createElement('option');
+        // let the value of the option equal the array element
+        optionEl.value = userCities[i];
+        // let the text of the option equal the array element
+        optionEl.textContent = userCities[i]
+
+        // append option element to selectEl
+        selectEl.append(optionEl); 
+    }
+};

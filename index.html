@@ -19,7 +19,7 @@
    <!-- hero -->
    <header class="hero sticky-top text-center">
       <h1><i class="fa-solid fa-cloud-sun"></i>Weather Dashboard</h1>
-      <p class="fs-6">Wind, Rain, or Shine, You'll Find Out Here</p>
+      <p class="fs-6">Wind, Rain, or Shine, We'll Let You Know</p>
    </header>
 
    <main class="container-fluid px-3 vh-100 vw-100 m-0 p-0">
@@ -27,17 +27,17 @@
          <!-- navigation section -->
          <section class="navigation col-3">
             <!-- search section -->
-            <div class="search h-25 d-flex align-items-center">
-               <form id="user-form" class="p-3 d-flex flex-wrap justify-content-center">
-                  <input name="city" id="city" type="text" autofocus="true" placeholder="Enter a City Name!" class="form-input w-100 p-2 rounded-pill text-center"/>
-                  <button type="submit" class="btn-search btn rounded-pill">Search</button>
+            <div class="search d-flex flex-wrap align-items-center">
+               <form id="user-form" class="px-3 d-flex flex-wrap justify-content-center">
+                  <h2 class="text-center fs-4">Search a City to View It's Forecast!</h2>
+                  <input name="city" id="city" type="text" autofocus="true" placeholder="City Name" class="form-input w-100 my-3 p-2 rounded-pill text-center"/>
+                  <button id="search-city" type="submit" class="btn-search btn rounded-pill">Search</button>
                </form>  
             </div>
-            <div class="h-75 text-center">
+            <div class="h-50 px-3 text-center">
 
-               <select id="cities" class="w-75 rounded-pill text-center">
+               <select id="cities" class="w-100 p-2 rounded-pill text-center">
                   <option value="Select a Training Day">Searched Cities</option>
-                  <option value="austin">Austin</option>
        
                </select>
 
@@ -50,6 +50,11 @@
          </section>
       </section>
    </main>
+
+   <!-- jquery link -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <!-- js link -->
+   <script src="./assets/script.js"></script>
 
     
 </body>

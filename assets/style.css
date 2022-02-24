@@ -46,10 +46,19 @@ body {
 /* SEARCH SECTION */
 .search {
    border-bottom: 3px solid var(--primary);
+   padding: 35px 0;
+   margin-bottom: 35px;
 }
+
+.search h2 {
+   font-weight: 400;
+   color: white;
+   text-shadow: 2px 2px 8px var(--primary);   
+}
+
 .btn-search {
    padding: 6px 50px;
-   margin-top: 15px;
+   box-shadow: 0px 0px 10px 5px var(--secondary);
 }
 
 .btn-search:hover {
