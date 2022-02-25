@@ -30,8 +30,11 @@ let searchedCities = [];
 // reference select element
 const selectEl = document.getElementById('cities');
 
+// api key to use openweathermap
+const apiKey = 'fcb0e85d49e8d269381b97be8b5205b9';
+
 // get user city searched and push into searchedCities array
-function citiesDropDown(event) {
+function userCitySearch(event) {
 
     console.log('citiesDropDown beginning ', searchedCities)
     // convert cities
@@ -39,9 +42,9 @@ function citiesDropDown(event) {
     // prevent refresh of page after button click
     event.preventDefault();
 
-    // get value for searched cities
+    // get value for searched cities and trim excess spaces
     // cannot use textContent with input element
-    let citySearched = inputEl.value;
+    let citySearched = inputEl.value.trim();
     // lowercase the city
     citySearched = citySearched.toLowerCase();
 
@@ -62,58 +65,101 @@ function citiesDropDown(event) {
         selectCities();
     }
     // include() returns true if the element is contained in the array, and false if otherwise
-
-    console.log('citiesDropDown after if statements ', searchedCities)
+    // source: https://bobbyhadz.com/blog/javascript-array-push-if-not-exist#:~:text=over%20includes()%20.-,To%20push%20an%20element%20in%20an%20array%20if%20it%20doesn,()%20method%20to%20add%20it.
 
     // run saveCities() to save cities to local storage
     saveCities();
 
+    // clear input value
+    inputEl.value = '';
 };
-searchBtn.addEventListener('click', citiesDropDown);
+searchBtn.addEventListener('click', userCitySearch);
+
+// convert city searched into lat long with api
+function latLon(city) {
+
+   let apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city + '&appid=' + apiKey;
+
+   // fetch returns Promise, since it's a slower function, it will run asynchronously 
+   fetch(apiUrl)
+   .then(function(response) {
+
+      // when the HTTP request status code is something in the 200s, the ok proprty will be true
+      if (response.ok) {
+         // format response object into json
+         // json() method returns another promise, so need another then() the resolve the Promise
+         // the callback function displays the data
+         response.json().then(function(data) {
+
+            // send data to getUvIndex()
+            getUvIndex(data);
+
+            console.log(data);
+            console.log(data[0])
+            console.log(data[0].lat)
+            console.log(data[0].lon)
+         });
+      }
+      // if the ok property is false, do this
+      else {
+         alert("Error: City Not Found");
+      }
+   })
+   // api's way of handling network errors
+   .catch(function(error) {
+      // Notice this `.catch()` getting chained onto the end of the `.then()` method
+      alert("Unable to connect to OpenWeatherMap");
+   });
+}
+latLon('austin');
+
+
+
+
 
 // load saved cities from local storage
 function loadCities() {
 
-    // load saved cities
-    let savedCities = localStorage.getItem('Cities');
-    // turn savedCities into array 
-    savedCities = JSON.parse(savedCities);
+   // load saved cities
+   let savedCities = localStorage.getItem('Cities');
+   // turn savedCities into array 
+   savedCities = JSON.parse(savedCities);
 
-    // if there are no cities saved, do nothing
-    if (savedCities === null) {
-        return;
-    }
-    // else if there are cities saved, add them to the searchedCities array
-    else {
-        searchedCities = savedCities;
-    }
+   // if there are no cities saved, do nothing
+   if (savedCities === null) {
+      return;
+   }
+   // else if there are cities saved, add them to the searchedCities array
+   else {
+      searchedCities = savedCities;
+   }
 }
 loadCities();
 
 // get the searchCities and save them to local storage
 function saveCities() {
 
-    // save userCities array to local storage
-    localStorage.setItem('Cities', JSON.stringify(searchedCities).toLowerCase());
+   // save userCities array to local storage
+   localStorage.setItem('Cities', JSON.stringify(searchedCities).toLowerCase());
 
 };
 
 // loop through userCities and add generate options for select dropdown
 function selectCities() {
-    console.log('selectCities is ', searchedCities);
+   console.log('selectCities is ', searchedCities);
     
-    for(i = 0; i < searchedCities.length; i++) {
+   for(i = 0; i < searchedCities.length; i++) {
 
-        // create the option element
-        let optionEl = document.createElement('option');
-        // let the value of the option equal the array element
-        optionEl.value = searchedCities[i].toLowerCase();
-        // let the text of the option equal the array element
-        optionEl.textContent = capitalize(searchedCities[i]);
+      // create the option element
+      let optionEl = document.createElement('option');
+      // let the value of the option equal the array element
+      optionEl.value = searchedCities[i].toLowerCase();
+      // let the text of the option equal the array element
+      optionEl.textContent = capitalize(searchedCities[i]);
 
-        // append option element to selectEl
-        selectEl.append(optionEl); 
-    }
+      // append option element to selectEl
+      selectEl.append(optionEl); 
+   }
 };
 selectCities();
 
@@ -121,6 +167,6 @@ selectCities();
 // https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
 // capitalize city to display nicely
 function capitalize(city) {
-    return city.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
+   return city.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
 }
 
