@@ -114,7 +114,45 @@ function latLon(city) {
 latLon('austin');
 
 
+// get current uv index and current weather for city searched with api
+function getUvIndex(cityData) {
 
+   // save city lat
+   let cityLat = cityData[0].lat;
+   // save city lon
+   let cityLon = cityData[0].lon;
+
+   var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + cityLat + '&lon=' + cityLon + '&units=imperial&appid=' + apiKey;
+
+   console.log('uv Index', cityLat, cityLon);
+
+   fetch(apiUrl)
+   .then(function(response) {
+
+      if (response.ok) {
+
+         response.json().then(function(data) {
+
+            console.log(data);
+
+            console.log(data.current.uvi);
+
+            console.log(data.current.temp);
+            console.log(data.current.humidity);
+            console.log(data.current.wind_speed);
+
+         });
+      }
+      else {
+         alert("Error: City Lat and Lon Not Found");
+      }
+   })
+   // api's way of handling network errors
+   .catch(function(error) {
+      // Notice this `.catch()` getting chained onto the end of the `.then()` method
+      alert("Unable to connect to OpenWeatherMap");
+   });
+}
 
 
 // load saved cities from local storage
