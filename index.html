@@ -15,22 +15,24 @@
    
    <title>Document</title> 
 </head>
-<body>
+
+<body class="vw-100">
    <!-- hero -->
-   <header class="hero sticky-top text-center">
+   <header class="hero vw-100 sticky-top text-center">
       <h1><i class="fa-solid fa-cloud-sun"></i>Weather Dashboard</h1>
       <p class="fs-6">Wind, Rain, or Shine, We'll Let You Know</p>
    </header>
 
    <main class="container-fluid vh-100 vw-100 p-0">
-      <section class="row h-100 w-100">
+
+      <!-- rows and columns -->
+      <section class="row w-100">
          <!-- navigation section -->
-         <section class="navigation col-4">
+         <section class="navigation col-4 col-35">
             <!-- search section -->
             <div class="search d-flex flex-wrap align-items-center">
                <form id="user-form" class="px-3 d-flex flex-wrap justify-content-center">
-                  <h2 class="text-center fs-4">Search a City</h2>
-                  <input name="city" id="city" type="text" autofocus="true" placeholder="City Name" class="form-input w-100 my-3 p-2 rounded-pill text-center"/>
+                  <input name="city" id="city" type="text" autofocus="true" placeholder="Enter a City Name" class="form-input w-100 my-3 p-2 rounded-pill text-center"/>
                   <button id="search-city" type="submit" class="btn-search btn rounded-pill">Weather Me!</button>
                </form>  
             </div>
@@ -46,28 +48,60 @@
             </div>
          </section>
 
-         <!-- weather section -->
-         <section class=" col-8">
+         <!-- current weather section -->
+         <section class="col-8 col-85">
             <!-- current weather section -->
             <div class="current d-flex flex-wrap align-items-center">
                <h2 id="currDate"></h2> <span>&nbsp &nbsp </span><h2 id="currTime"></h2>
-               <h2 class="w-100"><span id="curr-city" class="w-100">Austin</span> Weather</h2>
+               <h2 class="w-100"><span id="curr-city" class="w-100">City</span> Weather</h2>
 
-               <img id="icon"><h3 id="temp">TEMP</h3>
-               <h3 class="w-100 ">UV Index: <span id="uv-index"></span></h3> 
-               <h3 class="p-0 m-0">Wind: <span id="wind"></span>&nbsp | &nbsp</h3>
-               <h3 class="p-0 m-0">Humidity: <span id="humidity"></span></h3>
-
-            </div>
-
-            <!-- weather forecast section -->
-            <div class="px-3 text-center">
-
-
-
+               <img id="icon" src="http://openweathermap.org/img/wn/10d@2x.png"><h3 id="temp">Is It Cold? Hot?</h3>
+               <h3 class="w-100 ">UV Index: <span id="uv-index">Remember SunScreen!</span></h3> 
+               <h3 class="p-0 m-0">Wind: <span id="wind">Is it windy?</span>&nbsp | &nbsp</h3>
+               <h3 class="p-0 m-0">Humidity: <span id="humidity">Hope it's not moist!</span></h3>
             </div>
          </section>
       </section>
+
+      <!-- weather forecast section -->
+      <section id="days-container" class="forecast d-flex">
+         <!-- <article class="days">
+            <h3 id="day-date">DATE</h3>
+            <img id="day-icon">
+            <h3 id="day-emp">98</h3>
+            <h3 id="day-wind">75 mph</h3>
+            <h3 id="day-humidity">80</h3>
+         </article>
+         <article class="days">
+            <h3 id="day-date">DATE</h3>
+            <img id="day-icon">
+            <h3 id="day-emp">98</h3>
+            <h3 id="day-wind">75 mph</h3>
+            <h3 id="day-humidity">80</h3>
+         </article>
+         <article class="days">
+            <h3 id="day-date">DATE</h3>
+            <img id="day-icon">
+            <h3 id="day-emp">98</h3>
+            <h3 id="day-wind">75 mph</h3>
+            <h3 id="day-humidity">80</h3>
+         </article>
+         <article class="days">
+            <h3 id="day-date">DATE</h3>
+            <img id="day-icon">
+            <h3 id="day-emp">98</h3>
+            <h3 id="day-wind">75 mph</h3>
+            <h3 id="day-humidity">80</h3>
+         </article>
+         <article class="days">
+            <h3 id="day-date">DATE</h3>
+            <img id="day-icon">
+            <h3 id="day-emp">98</h3>
+            <h3 id="day-wind">75 mph</h3>
+            <h3 id="day-humidity">80</h3>
+         </article> -->
+      </section>
+
    </main>
 
    <!-- jquery link -->

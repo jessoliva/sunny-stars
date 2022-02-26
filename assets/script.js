@@ -56,9 +56,6 @@ currDate();
 // get user city searched and push into searchedCities array
 function userCitySearch(event) {
 
-   console.log('citiesDropDown beginning ', searchedCities)
-   // convert cities
-
    // prevent refresh of page after button click
    event.preventDefault();
 
@@ -68,7 +65,12 @@ function userCitySearch(event) {
    // lowercase the city
    citySearched = citySearched.toLowerCase();
 
-   console.log('citiesDropDown before if statements ', searchedCities);
+   // display city searched 
+   let currCity = document.getElementById('curr-city');
+   currCity.textContent = capitalize(citySearched);
+
+   // send city searched to latLon();
+   latLon(citySearched);
 
    // if no city is entered or city already exists in the array, the don't push that city in there
    if (citySearched === null || citySearched === '') {
@@ -126,20 +128,18 @@ function latLon(city) {
       // Notice this `.catch()` getting chained onto the end of the `.then()` method
       alert("Unable to connect to OpenWeatherMap");
    });
-}
-latLon('austin');
+};
+// latLon('austin');
 
 
 // get current uv index and current weather for city searched with api using lat lon
 function getCurrWeather(cityData) {
-
    // save city lat
    let cityLat = cityData[0].lat;
    // save city lon
    let cityLon = cityData[0].lon;
 
    var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + cityLat + '&lon=' + cityLon + '&units=imperial&appid=' + apiKey;
-
 
    fetch(apiUrl)
    .then(function(response) {
@@ -148,19 +148,11 @@ function getCurrWeather(cityData) {
 
          response.json().then(function(data) {
 
-            // send weather data to currWeather()
+            // send current weather data to currWeather()
             currWeather(data.current);
 
-            //next day
-            console.log(data.daily)
-            console.log(data.daily[0])
-            console.log(data.daily[0].temp.min)
-            console.log(data.daily[0].temp.max)
-            console.log(data.daily[0].uvi)
-            console.log(data.daily[0].humidity)
-            console.log(data.daily[0].wind_speed)
-            console.log(data.daily[0].weather[0].icon)
-
+            // send forecast weather to forecast()
+            forecast(data.daily);
          });
       }
       else {
@@ -181,8 +173,6 @@ function currWeather(cityWeather) {
    // reference temp element
    let tempEl = document.getElementById('temp');
    tempEl.textContent = Math.round(cityWeather.temp) + '°F';
-
-   console.log('current weather icon is ' + cityWeather.weather[0].icon);
 
    // reference icon element
    let iconEl = document.getElementById('icon');
@@ -212,7 +202,60 @@ function currWeather(cityWeather) {
 
    // reference humidity element
    let humidityEl = document.getElementById('humidity');
-   humidityEl.textContent = cityWeather.humidity;
+   humidityEl.textContent = cityWeather.humidity + '%';
+};
+
+// display forecast information
+function forecast(cityForecast) {
+   let addDay = 1;
+
+   // reference forecast container
+   const daysEl = document.getElementById('days-container');
+
+   // clear reference container
+   daysEl.innerHTML = '';
+
+   // cityForecast comes in as an array of objects 
+   // forecast for 5 days includes indexes 1-5
+   for (i = 1; i < 6; i++) {
+
+      // create element for each day
+      let dayEl = document.createElement('article');
+      dayEl.classList = 'days';
+
+      // create date title
+      let dateEl = document.createElement('h3');
+      dateEl.classList = 'day-date p-0';
+      let dayDate = moment(moment(), "MMMM Do YYYY").add(addDay, 'days');
+      let dateFormat = dayDate.format('MMMM DD, Y');
+      dateEl.textContent = dateFormat;
+      // inc day
+      addDay++;
+
+      // create icon 
+      let dayIcon = document.createElement('img');
+      dayIcon.setAttribute('src','http://openweathermap.org/img/wn/' + cityForecast[i].weather[0].icon + '@2x.png');
+
+      // create min temp element
+      let dateMinTemp = document.createElement('h3');
+      dateMinTemp.textContent = 'L:'  +  Math.round(cityForecast[i].temp.min) + ' °F';
+
+      // create max temp element
+      let dateMaxTemp = document.createElement('h3');
+      dateMaxTemp.textContent = 'H:'  + Math.round(cityForecast[i].temp.max) + ' °F';
+
+      // create wind temp element
+      let dateWind = document.createElement('h3');
+      dateWind.textContent = cityForecast[i].wind_speed + ' mph';
+
+      // create humidity temp element
+      let dateHumidity = document.createElement('h3');
+      dateHumidity.classList = 'day-humidity';
+      dateHumidity.textContent = cityForecast[i].humidity + '%';
+
+      dayEl.append(dateEl, dayIcon, dateMinTemp, dateMaxTemp, dateWind, dateHumidity);
+      daysEl.append(dayEl);
+   }
 };
 
 
@@ -247,7 +290,6 @@ function saveCities() {
 
 // loop through userCities and add generate options for select dropdown
 function selectCities() {
-   console.log('selectCities is ', searchedCities);
     
    for(i = 0; i < searchedCities.length; i++) {
 
