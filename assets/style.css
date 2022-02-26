@@ -23,7 +23,7 @@ body {
       hsl(194deg 33% 44%) 100%
    );    */
    background:#142529;
-   background-image: radial-gradient(at 40% 20%, hsla(194,47%,26%,1) 0, transparent 50%), radial-gradient(at 80% 0%, #2ea1b8 0, transparent 50%), radial-gradient(at 0% 50%, hsla(195,61%,28%,1) 0, transparent 50%), radial-gradient(at 100% 84%, hsla(196,45%,22%,1) 0, transparent 50%), radial-gradient(at 0% 100%, hsla(194,74%,37%,1) 0, transparent 50%), radial-gradient(at 80% 100%, hsla(193,68%,40%,1) 0, transparent 50%), radial-gradient(at 0% 0%, hsla(195,57%,50%,1) 0, transparent 50%);
+   /* background-image: radial-gradient(at 40% 20%, hsla(194,47%,26%,1) 0, transparent 50%), radial-gradient(at 80% 0%, #2ea1b8 0, transparent 50%), radial-gradient(at 0% 50%, hsla(195,61%,28%,1) 0, transparent 50%), radial-gradient(at 100% 84%, hsla(196,45%,22%,1) 0, transparent 50%), radial-gradient(at 0% 100%, hsla(194,74%,37%,1) 0, transparent 50%), radial-gradient(at 80% 100%, hsla(193,68%,40%,1) 0, transparent 50%), radial-gradient(at 0% 0%, hsla(195,57%,50%,1) 0, transparent 50%); */
 }
 /*****************************************************/
 
@@ -44,9 +44,14 @@ body {
 
 /* NAVIGATION SECTION STYLES */
 /* SEARCH SECTION */
+.navigation {
+   padding: 0 50px;
+
+}
+
 .search {
-   border-bottom: 3px solid var(--primary);
-   padding: 35px 0;
+   border-bottom: 3px solid var(--secondary);
+   padding: 50px 0;
    margin-bottom: 35px;
 }
 
@@ -64,8 +69,8 @@ body {
 .btn-search:hover {
    font-weight: bold;
    color: white;
-   /* background-color: var(--primary); */
-   background: linear-gradient(to bottom right, #365F6D, #142529);
+   background-color: var(--secondary);
+   /* background: linear-gradient(to bottom right, #365F6D, var(--primary)); */
    transition: all 0.6s ease-in-out;
    opacity: 0.75;
 }
@@ -76,4 +81,36 @@ body {
    /* background: linear-gradient(to bottom right, #365F6D, #142529); */
    background-color: var(--primary);
    transition: all 0.7s ease-in-out;
+}
+/*****************************************************/
+
+/* WEATHER SECTION STYLES */
+/* CURRENT WEATHER SECTION */
+.current {
+   color: white;
+   background:#142529;
+   background-image: radial-gradient(at 40% 20%, hsla(194,47%,26%,1) 0, transparent 50%), radial-gradient(at 80% 0%, #2ea1b8 0, transparent 50%), radial-gradient(at 0% 50%, hsla(195,61%,28%,1) 0, transparent 50%), radial-gradient(at 100% 84%, hsla(196,45%,22%,1) 0, transparent 50%), radial-gradient(at 0% 100%, hsla(194,74%,37%,1) 0, transparent 50%), radial-gradient(at 80% 100%, hsla(193,68%,40%,1) 0, transparent 50%), radial-gradient(at 0% 0%, hsla(195,57%,50%,1) 0, transparent 50%);
+   border-radius: 26px;
+   padding: 20px 120px 20px 35px;
+   margin: 35px 70px 35px 60px;
+
+}
+
+.current h2 {
+   font-size: 30px;
+   padding-bottom: 10px;
+}
+
+#curr-city {
+   color: rgb(231, 169, 233);
+}
+
+#currDate, #currTime {
+   font-weight: 400;
+   font-size: 24px;
+}
+
+.current h3 {
+   font-size: 24px;
+   padding-bottom: 7px;
 }

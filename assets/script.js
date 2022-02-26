@@ -33,6 +33,26 @@ const selectEl = document.getElementById('cities');
 // api key to use openweathermap
 const apiKey = 'fcb0e85d49e8d269381b97be8b5205b9';
 
+
+   
+// get current date and time
+function currDate() {
+   // get current day
+   let currentDay = $('#currDate');
+   // set format for current day
+   currentDay.text(moment().format('dddd, MMMM Do YYYY'));
+
+   // as each second passes, show it dynamically
+   setInterval (function() {
+       // get current time
+       let currentTime = $('#currTime');
+       // set format for current time
+       currentTime.text(moment().format('h:mm:ss A'));
+
+   }, 1000);
+}
+currDate();
+
 // get user city searched and push into searchedCities array
 function userCitySearch(event) {
 
@@ -91,13 +111,8 @@ function latLon(city) {
          // the callback function displays the data
          response.json().then(function(data) {
 
-            // send data to getUvIndex()
-            getUvIndex(data);
-
-            console.log(data);
-            console.log(data[0])
-            console.log(data[0].lat)
-            console.log(data[0].lon)
+            // send data to getCurrWeather()
+            getCurrWeather(data);
          });
       }
       // if the ok property is false, do this
@@ -115,7 +130,7 @@ latLon('austin');
 
 
 // get current uv index and current weather for city searched with api
-function getUvIndex(cityData) {
+function getCurrWeather(cityData) {
 
    // save city lat
    let cityLat = cityData[0].lat;
@@ -135,11 +150,24 @@ function getUvIndex(cityData) {
 
             console.log(data);
 
+            //current
             console.log(data.current.uvi);
-
             console.log(data.current.temp);
             console.log(data.current.humidity);
             console.log(data.current.wind_speed);
+
+            //next day
+            console.log(data.daily)
+            console.log(data.daily[0])
+            console.log(data.daily[0].temp.min)
+            console.log(data.daily[0].temp.max)
+            console.log(data.daily[0].uvi)
+            console.log(data.daily[0].humidity)
+            console.log(data.daily[0].wind_speed)
+            console.log(data.daily[0].weather[0].icon)
+
+
+
 
          });
       }

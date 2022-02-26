@@ -22,16 +22,16 @@
       <p class="fs-6">Wind, Rain, or Shine, We'll Let You Know</p>
    </header>
 
-   <main class="container-fluid px-3 vh-100 vw-100 m-0 p-0">
+   <main class="container-fluid vh-100 vw-100 p-0">
       <section class="row h-100 w-100">
          <!-- navigation section -->
-         <section class="navigation col-3">
+         <section class="navigation col-4">
             <!-- search section -->
             <div class="search d-flex flex-wrap align-items-center">
                <form id="user-form" class="px-3 d-flex flex-wrap justify-content-center">
-                  <h2 class="text-center fs-4">Search a City to View It's Forecast!</h2>
+                  <h2 class="text-center fs-4">Search a City</h2>
                   <input name="city" id="city" type="text" autofocus="true" placeholder="City Name" class="form-input w-100 my-3 p-2 rounded-pill text-center"/>
-                  <button id="search-city" type="submit" class="btn-search btn rounded-pill">Search</button>
+                  <button id="search-city" type="submit" class="btn-search btn rounded-pill">Weather Me!</button>
                </form>  
             </div>
 
@@ -47,14 +47,37 @@
          </section>
 
          <!-- weather section -->
-         <section class="info col-9">
+         <section class=" col-8">
+
+            <!-- current weather section -->
+            <div class="current d-flex flex-wrap align-items-center">
+               <h2 id="currDate"></h2> <span>&nbsp &nbsp </span><h2 id="currTime"></h2>
+               <h2 class="w-100"><span id="curr-city" class="w-100">Austin</span> Weather</h2>
+
+               <h3 id="min-temp" class="w-100">TEMP <img id="icon"></img></h3>
+               <h3>Wind: <span id="wind"></span>| </h3>
+               <h3>Humidity: <span id="humidity"></span></h3>
+               <h3 class="p-0 m-0 w-100">UV Index: <span id="uv-index"></span></h3> 
+            </div>
+
+            <!-- weather forecast section -->
+            <div class="px-3 text-center">
+
+
+
+
+            </div>
 
          </section>
       </section>
    </main>
 
    <!-- jquery link -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <!-- moment link -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+   <!-- luxon link -->
+   <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
    <!-- js link -->
    <script src="./assets/script.js"></script>
 
