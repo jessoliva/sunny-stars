@@ -90,6 +90,9 @@ function userCitySearch(event) {
 
    // clear input value
    inputEl.value = '';
+
+   // button out of focus
+   event.target.blur();
 };
 searchBtn.addEventListener('click', userCitySearch);
 
@@ -333,5 +336,3 @@ selectCities();
 function capitalize(city) {
    return city.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
 };
-
-
