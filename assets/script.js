@@ -65,10 +65,6 @@ function userCitySearch(event) {
    // lowercase the city
    citySearched = citySearched.toLowerCase();
 
-   // display city searched 
-   let currCity = document.getElementById('curr-city');
-   currCity.textContent = capitalize(citySearched);
-
    // send city searched to latLon();
    latLon(citySearched);
 
@@ -97,10 +93,32 @@ function userCitySearch(event) {
 };
 searchBtn.addEventListener('click', userCitySearch);
 
+// get value from dropdown
+function selectFormHandler() {
+
+   // save city selected by user
+   let selectedCity = selectEl.options[selectEl.selectedIndex].value;
+
+   // send city to latLon()
+   latLon(selectedCity);
+   
+   // reset selected city
+   selectEl.selectedIndex = 0;
+
+}
+selectEl.addEventListener('change', selectFormHandler);
+// credit: https://stackoverflow.com/questions/46329633/select-value-without-button
+// credit https://www.w3schools.com/jsref/event_onchange.asp
+
 
 // convert city searched into lat long with api
 function latLon(city) {
 
+   // display city searched 
+   let currCity = document.getElementById('curr-city');
+   currCity.textContent = capitalize(city);
+
+   // fetch information for city
    let apiUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+ city + '&appid=' + apiKey;
 
    // fetch returns Promise, since it's a slower function, it will run asynchronously 
@@ -129,7 +147,6 @@ function latLon(city) {
       alert("Unable to connect to OpenWeatherMap");
    });
 };
-// latLon('austin');
 
 
 // get current uv index and current weather for city searched with api using lat lon
@@ -205,8 +222,11 @@ function currWeather(cityWeather) {
    humidityEl.textContent = cityWeather.humidity + '%';
 };
 
+
 // display forecast information
 function forecast(cityForecast) {
+
+   // to display correct date
    let addDay = 1;
 
    // reference forecast container
@@ -238,11 +258,11 @@ function forecast(cityForecast) {
 
       // create min temp element
       let dateMinTemp = document.createElement('h3');
-      dateMinTemp.textContent = 'L:'  +  Math.round(cityForecast[i].temp.min) + ' °F';
+      dateMinTemp.textContent = 'L: '  +  Math.round(cityForecast[i].temp.min) + ' °F';
 
       // create max temp element
       let dateMaxTemp = document.createElement('h3');
-      dateMaxTemp.textContent = 'H:'  + Math.round(cityForecast[i].temp.max) + ' °F';
+      dateMaxTemp.textContent = 'H: '  + Math.round(cityForecast[i].temp.max) + ' °F';
 
       // create wind temp element
       let dateWind = document.createElement('h3');
@@ -251,7 +271,7 @@ function forecast(cityForecast) {
       // create humidity temp element
       let dateHumidity = document.createElement('h3');
       dateHumidity.classList = 'day-humidity';
-      dateHumidity.textContent = cityForecast[i].humidity + '%';
+      dateHumidity.textContent = 'Humidity: ' + cityForecast[i].humidity + '%';
 
       dayEl.append(dateEl, dayIcon, dateMinTemp, dateMaxTemp, dateWind, dateHumidity);
       daysEl.append(dayEl);
