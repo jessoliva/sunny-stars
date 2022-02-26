@@ -32,9 +32,8 @@ const selectEl = document.getElementById('cities');
 
 // api key to use openweathermap
 const apiKey = 'fcb0e85d49e8d269381b97be8b5205b9';
-
-
    
+
 // get current date and time
 function currDate() {
    // get current day
@@ -44,56 +43,58 @@ function currDate() {
 
    // as each second passes, show it dynamically
    setInterval (function() {
-       // get current time
-       let currentTime = $('#currTime');
-       // set format for current time
-       currentTime.text(moment().format('h:mm:ss A'));
+      // get current time
+      let currentTime = $('#currTime');
+      // set format for current time
+      currentTime.text(moment().format('h:mm:ss A'));
 
    }, 1000);
 }
 currDate();
 
+
 // get user city searched and push into searchedCities array
 function userCitySearch(event) {
 
-    console.log('citiesDropDown beginning ', searchedCities)
-    // convert cities
+   console.log('citiesDropDown beginning ', searchedCities)
+   // convert cities
 
-    // prevent refresh of page after button click
-    event.preventDefault();
+   // prevent refresh of page after button click
+   event.preventDefault();
 
-    // get value for searched cities and trim excess spaces
-    // cannot use textContent with input element
-    let citySearched = inputEl.value.trim();
-    // lowercase the city
-    citySearched = citySearched.toLowerCase();
+   // get value for searched cities and trim excess spaces
+   // cannot use textContent with input element
+   let citySearched = inputEl.value.trim();
+   // lowercase the city
+   citySearched = citySearched.toLowerCase();
 
-    console.log('citiesDropDown before if statements ', searchedCities);
+   console.log('citiesDropDown before if statements ', searchedCities);
 
-    // if no city is entered or city already exists in the array, the don't push that city in there
-    if (citySearched === null || citySearched === '') {
-        alert('Please Enter A City');
-    }
-    // if the city searched by the user is NOT in the array, then push it
-    else if (!searchedCities.includes(citySearched)) {
-        searchedCities.push(citySearched);
+   // if no city is entered or city already exists in the array, the don't push that city in there
+   if (citySearched === null || citySearched === '') {
+      alert('Please Enter A City');
+   }
+   // if the city searched by the user is NOT in the array, then push it
+   else if (!searchedCities.includes(citySearched)) {
+      searchedCities.push(citySearched);
 
-        // reset selectEl so cities aren't duplicated in dropdown
-        selectEl.innerHTML = '<option value="Select a City">Searched Cities</option>';
+      // reset selectEl so cities aren't duplicated in dropdown
+      selectEl.innerHTML = '<option value="Select a City">Searched Cities</option>';
 
-        // run selectCities() here to add city searched to dropdown
-        selectCities();
-    }
-    // include() returns true if the element is contained in the array, and false if otherwise
-    // source: https://bobbyhadz.com/blog/javascript-array-push-if-not-exist#:~:text=over%20includes()%20.-,To%20push%20an%20element%20in%20an%20array%20if%20it%20doesn,()%20method%20to%20add%20it.
+      // run selectCities() here to add city searched to dropdown
+      selectCities();
+   }
+   // include() returns true if the element is contained in the array, and false if otherwise
+   // source: https://bobbyhadz.com/blog/javascript-array-push-if-not-exist#:~:text=over%20includes()%20.-,To%20push%20an%20element%20in%20an%20array%20if%20it%20doesn,()%20method%20to%20add%20it.
 
-    // run saveCities() to save cities to local storage
-    saveCities();
+   // run saveCities() to save cities to local storage
+   saveCities();
 
-    // clear input value
-    inputEl.value = '';
+   // clear input value
+   inputEl.value = '';
 };
 searchBtn.addEventListener('click', userCitySearch);
+
 
 // convert city searched into lat long with api
 function latLon(city) {
@@ -111,7 +112,7 @@ function latLon(city) {
          // the callback function displays the data
          response.json().then(function(data) {
 
-            // send data to getCurrWeather()
+            // send data of lat lon of city to getCurrWeather()
             getCurrWeather(data);
          });
       }
@@ -129,7 +130,7 @@ function latLon(city) {
 latLon('austin');
 
 
-// get current uv index and current weather for city searched with api
+// get current uv index and current weather for city searched with api using lat lon
 function getCurrWeather(cityData) {
 
    // save city lat
@@ -139,7 +140,6 @@ function getCurrWeather(cityData) {
 
    var apiUrl = 'https://api.openweathermap.org/data/2.5/onecall?lat=' + cityLat + '&lon=' + cityLon + '&units=imperial&appid=' + apiKey;
 
-   console.log('uv Index', cityLat, cityLon);
 
    fetch(apiUrl)
    .then(function(response) {
@@ -148,13 +148,8 @@ function getCurrWeather(cityData) {
 
          response.json().then(function(data) {
 
-            console.log(data);
-
-            //current
-            console.log(data.current.uvi);
-            console.log(data.current.temp);
-            console.log(data.current.humidity);
-            console.log(data.current.wind_speed);
+            // send weather data to currWeather()
+            currWeather(data.current);
 
             //next day
             console.log(data.daily)
@@ -165,9 +160,6 @@ function getCurrWeather(cityData) {
             console.log(data.daily[0].humidity)
             console.log(data.daily[0].wind_speed)
             console.log(data.daily[0].weather[0].icon)
-
-
-
 
          });
       }
@@ -180,7 +172,48 @@ function getCurrWeather(cityData) {
       // Notice this `.catch()` getting chained onto the end of the `.then()` method
       alert("Unable to connect to OpenWeatherMap");
    });
-}
+};
+
+
+// display current weather information
+function currWeather(cityWeather) {
+
+   // reference temp element
+   let tempEl = document.getElementById('temp');
+   tempEl.textContent = Math.round(cityWeather.temp) + '°F';
+
+   console.log('current weather icon is ' + cityWeather.weather[0].icon);
+
+   // reference icon element
+   let iconEl = document.getElementById('icon');
+   iconEl.setAttribute('src','http://openweathermap.org/img/wn/' + cityWeather.weather[0].icon + '@2x.png');
+
+   // reference uv index element
+   let uvIndexEl = document.getElementById('uv-index');
+   // clear uv index classList
+   uvIndexEl.classList = '';
+   // add styling classes
+   uvIndexEl.classList = 'px-3 rounded';
+   uvIndexEl.textContent = cityWeather.uvi;
+   // index conditions
+   if (0 <= cityWeather.uvi < 3) {
+      uvIndexEl.classList.add('uv-low');
+   }
+   else if (3 <= cityWeather.uvi < 8) {
+      uvIndexEl.classList.add('uv-moderate');
+   }
+   else if (8 <= cityWeather.uvi) {
+      uvIndexEl.classList.add('uv-extreme');
+   }
+
+   // reference wind element
+   let windEl = document.getElementById('wind');
+   windEl.textContent = cityWeather.wind_speed + ' mph';
+
+   // reference humidity element
+   let humidityEl = document.getElementById('humidity');
+   humidityEl.textContent = cityWeather.humidity;
+};
 
 
 // load saved cities from local storage
@@ -202,6 +235,7 @@ function loadCities() {
 }
 loadCities();
 
+
 // get the searchCities and save them to local storage
 function saveCities() {
 
@@ -209,6 +243,7 @@ function saveCities() {
    localStorage.setItem('Cities', JSON.stringify(searchedCities).toLowerCase());
 
 };
+
 
 // loop through userCities and add generate options for select dropdown
 function selectCities() {
@@ -229,10 +264,12 @@ function selectCities() {
 };
 selectCities();
 
+
 // NEED TO GIVE CREDIT TO
 // https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
 // capitalize city to display nicely
 function capitalize(city) {
    return city.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
-}
+};
+
 

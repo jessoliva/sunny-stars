@@ -101,16 +101,34 @@ body {
    padding-bottom: 10px;
 }
 
-#curr-city {
-   color: rgb(231, 169, 233);
+.current h3 {
+   font-size: 24px;
+   padding-bottom: 7px;
 }
 
 #currDate, #currTime {
    font-weight: 400;
-   font-size: 24px;
+   font-size: 23px;
 }
 
-.current h3 {
-   font-size: 24px;
-   padding-bottom: 7px;
+#curr-city,
+#wind,
+#humidity {
+   color: rgb(231, 169, 233);
+}
+
+#icon {
+   width: 10%;
+}
+
+.uv-low {
+   background: rgb(114, 187, 114);
+}
+
+.uv-moderate {
+   background: rgb(240, 185, 82);
+}
+
+.uv-extreme {
+   background: rgb(182, 52, 52);
 }
