@@ -11,26 +11,13 @@
 body {
    margin: 0;
    padding: 0;
-   /* background: linear-gradient(to right, #142529, #365F6D); */
-   /* background-image: linear-gradient(
-      60deg,
-      hsl(191deg 34% 12%) 0%,
-      hsl(190deg 33% 15%) 21%,
-      hsl(192deg 34% 17%) 39%,
-      hsl(194deg 33% 20%) 55%,
-      hsl(195deg 34% 28%) 68%,
-      hsl(195deg 33% 36%) 78%,
-      hsl(194deg 33% 44%) 100%
-   );    */
    background:#142529;
-   /* background-image: radial-gradient(at 40% 20%, hsla(194,47%,26%,1) 0, transparent 50%), radial-gradient(at 80% 0%, #2ea1b8 0, transparent 50%), radial-gradient(at 0% 50%, hsla(195,61%,28%,1) 0, transparent 50%), radial-gradient(at 100% 84%, hsla(196,45%,22%,1) 0, transparent 50%), radial-gradient(at 0% 100%, hsla(194,74%,37%,1) 0, transparent 50%), radial-gradient(at 80% 100%, hsla(193,68%,40%,1) 0, transparent 50%), radial-gradient(at 0% 0%, hsla(195,57%,50%,1) 0, transparent 50%); */
 }
 /*****************************************************/
 
 /* HERO STYLES */
 .hero {
    color: white;
-   /* background: linear-gradient(to top left, #142529, #22596b); */
    background:#142529;
    background-image: radial-gradient(at 40% 20%, hsla(194,47%,26%,1) 0, transparent 50%), radial-gradient(at 80% 0%, #2ea1b8 0, transparent 50%), radial-gradient(at 0% 50%, hsla(195,61%,28%,1) 0, transparent 50%), radial-gradient(at 100% 84%, hsla(196,45%,22%,1) 0, transparent 50%), radial-gradient(at 0% 100%, hsla(194,74%,37%,1) 0, transparent 50%), radial-gradient(at 80% 100%, hsla(193,68%,40%,1) 0, transparent 50%), radial-gradient(at 0% 0%, hsla(195,57%,50%,1) 0, transparent 50%);
    padding: 1.5% 2%;
@@ -78,7 +65,6 @@ body {
    font-weight: bold;
    color: white;
    background-color: var(--secondary);
-   /* background: linear-gradient(to bottom right, #365F6D, var(--primary)); */
    transition: all 0.6s ease-in-out;
    opacity: 0.75;
 }
@@ -86,7 +72,6 @@ body {
 .btn-search:not(:hover) {
    font-weight: bold;
    color: white;
-   /* background: linear-gradient(to bottom right, #365F6D, #142529); */
    background-color: var(--primary);
    transition: all 0.7s ease-in-out;
 }
@@ -98,9 +83,8 @@ body {
    background:#142529;
    background-image: radial-gradient(at 40% 20%, hsla(194,47%,26%,1) 0, transparent 50%), radial-gradient(at 80% 0%, #2ea1b8 0, transparent 50%), radial-gradient(at 0% 50%, hsla(195,61%,28%,1) 0, transparent 50%), radial-gradient(at 100% 84%, hsla(196,45%,22%,1) 0, transparent 50%), radial-gradient(at 0% 100%, hsla(194,74%,37%,1) 0, transparent 50%), radial-gradient(at 80% 100%, hsla(193,68%,40%,1) 0, transparent 50%), radial-gradient(at 0% 0%, hsla(195,57%,50%,1) 0, transparent 50%);
    border-radius: 26px;
-   padding: 20px 120px 20px 35px;
+   padding: 20px 0px 20px 35px;
    margin: 35px 70px 35px 50px;
-
 }
 
 .current h2 {
@@ -148,7 +132,8 @@ body {
 }
 
 .days {
-   background: #e7a9e9;
+   background:#142529;
+   background-image: radial-gradient(at 40% 20%, hsla(194,47%,26%,1) 0, transparent 50%), radial-gradient(at 80% 0%, #2ea1b8 0, transparent 50%), radial-gradient(at 0% 50%, hsla(195,61%,28%,1) 0, transparent 50%), radial-gradient(at 100% 84%, hsla(196,45%,22%,1) 0, transparent 50%), radial-gradient(at 0% 100%, hsla(194,74%,37%,1) 0, transparent 50%), radial-gradient(at 80% 100%, hsla(193,68%,40%,1) 0, transparent 50%), radial-gradient(at 0% 0%, hsla(195,57%,50%,1) 0, transparent 50%);
    width: 18%;
    border-radius: 26px;
    padding: 20px 25px;
@@ -156,11 +141,12 @@ body {
 }
 
 .days h3 {
+   color: #e7a9e9;
    font-size: 20px;
    padding-bottom: 5px;
 }
 
-.day-date {
+h3 .day-date {
    margin-bottom: 0;
    padding-bottom: 0;
 }
@@ -169,3 +155,39 @@ body {
    padding-bottom: 0;
    margin: 0;
 }
+
+@media only screen and (max-width: 576px) {
+   .navigation {
+      padding: 0 40px;
+   }
+
+   .search {
+      padding-top: 0;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+   }
+
+   .curr-container {
+      padding: 0;
+   }
+
+   .current {
+      margin: 40px 35px;
+      padding: 25px;
+   }
+
+   .current h3 {
+      font-size: 18px;
+   }
+
+   .forecast {
+      flex-wrap: wrap;
+      padding-top: 0;
+   }
+
+   .days {
+      width: 100%;
+      margin-bottom: 10px;
+   }
+}
+ 

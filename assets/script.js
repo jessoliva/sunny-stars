@@ -1,21 +1,3 @@
-// Weather Dashboard Challenge 6 PsuedoCode
-
-// 1. Explore Open Weather API and Documentation\
-// 2. Figure out to get an API-Key for Open Weather API (which may involve making an account)
-// 3. Create a search box
-    // -HTML markup, css
-    // API call to run onClick of the search button 
-    // Pass the user input into the url of the API call appropriately
-// 4. Display the queried city's information on the dashboard for the user to see including forecast
-// 5. When we display the city's UV index, we want to display it in a color that matches the number 
-// 6. Store the user's search history in local storage
-//    -get the user's search history and display it in the search dropdown 
-//    -when the user clicks the city from the dropdown, pass the city into the api call to get and display the info from that city again
-
-// HINT: Abstract API call to a function with a city as the parameter to be passed into the url 
-
-// when i create a drop down menu, add the searched for cities into an array, loop through the array to create the option for the drop down menu
-
 // selectCities()
 // reference search city button 
 const searchBtn = document.getElementById('search-city');
@@ -32,25 +14,6 @@ const selectEl = document.getElementById('cities');
 
 // api key to use openweathermap
 const apiKey = 'fcb0e85d49e8d269381b97be8b5205b9';
-   
-
-// get current date and time
-function currDate() {
-   // get current day
-   let currentDay = $('#currDate');
-   // set format for current day
-   currentDay.text(moment().format('dddd, MMMM Do YYYY'));
-
-   // as each second passes, show it dynamically
-   setInterval (function() {
-      // get current time
-      let currentTime = $('#currTime');
-      // set format for current time
-      currentTime.text(moment().format('h:mm:ss A'));
-
-   }, 1000);
-}
-currDate();
 
 
 // get user city searched and push into searchedCities array
@@ -96,6 +59,7 @@ function userCitySearch(event) {
 };
 searchBtn.addEventListener('click', userCitySearch);
 
+
 // get value from dropdown
 function selectFormHandler() {
 
@@ -137,6 +101,7 @@ function latLon(city) {
 
             // send data of lat lon of city to getCurrWeather()
             getCurrWeather(data);
+
          });
       }
       // if the ok property is false, do this
@@ -150,6 +115,7 @@ function latLon(city) {
       alert("Unable to connect to OpenWeatherMap");
    });
 };
+latLon('Sydney');
 
 
 // get current uv index and current weather for city searched with api using lat lon
@@ -190,6 +156,15 @@ function getCurrWeather(cityData) {
 // display current weather information
 function currWeather(cityWeather) {
 
+   // reference current date element
+   let currentDay = document.getElementById('currDate');
+   // get dt unix timestamp
+   let dtDate = cityWeather.dt;
+   // display it
+   let newDate = moment.unix(dtDate).format('dddd, MMMM Do YYYY');
+
+   currentDay.textContent = newDate;
+
    // reference temp element
    let tempEl = document.getElementById('temp');
    tempEl.textContent = Math.round(cityWeather.temp) + '°F';
@@ -229,9 +204,6 @@ function currWeather(cityWeather) {
 // display forecast information
 function forecast(cityForecast) {
 
-   // to display correct date
-   let addDay = 1;
-
    // reference forecast container
    const daysEl = document.getElementById('days-container');
 
@@ -248,12 +220,13 @@ function forecast(cityForecast) {
 
       // create date title
       let dateEl = document.createElement('h3');
-      dateEl.classList = 'day-date p-0';
-      let dayDate = moment(moment(), "MMMM Do YYYY").add(addDay, 'days');
-      let dateFormat = dayDate.format('MMMM DD, Y');
-      dateEl.textContent = dateFormat;
-      // inc day
-      addDay++;
+      dateEl.classList = 'day-date p-0 text-white';
+      // get dt unix timestamp
+      let dtDate = cityForecast[i].dt;
+      // convert timestamp to date
+      let dayDate = moment.unix(dtDate).format('MMMM DD, Y');
+      // display it
+      dateEl.textContent = dayDate;
 
       // create icon 
       let dayIcon = document.createElement('img');
@@ -261,10 +234,12 @@ function forecast(cityForecast) {
 
       // create min temp element
       let dateMinTemp = document.createElement('h3');
+      dateMinTemp.classList = 'text-white';
       dateMinTemp.textContent = 'L: '  +  Math.round(cityForecast[i].temp.min) + ' °F';
 
       // create max temp element
       let dateMaxTemp = document.createElement('h3');
+      dateMaxTemp.classList = 'text-white';
       dateMaxTemp.textContent = 'H: '  + Math.round(cityForecast[i].temp.max) + ' °F';
 
       // create wind temp element

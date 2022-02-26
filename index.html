@@ -1,83 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- font-awesome link -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-   <!-- google fonts link -->
-   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Poppins:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
-   <!-- bootstrap link -->
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-   <!-- css link -->
-   <link rel="stylesheet" href="./assets/style.css" />
-   
-   <title>Document</title> 
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font-awesome link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- google fonts link -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Poppins:wght@100;200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <!-- bootstrap link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <!-- css link -->
+    <link rel="stylesheet" href="./assets/style.css" />
 
-<body class="vw-100">
-   <!-- hero -->
-   <header class="hero vw-100 sticky-top text-center">
+    <title>Document</title>
+  </head>
+
+  <body class="vw-100">
+    <!-- hero -->
+    <header class="hero vw-100 sticky-top text-center">
       <h1><i class="fa-solid fa-cloud-sun"></i>Weather Dashboard</h1>
       <p class="fs-6">Wind, Rain, or Shine, We'll Let You Know</p>
-   </header>
+    </header>
 
-   <main class="container-fluid vh-100 vw-100 p-0">
-
+    <main class="container-fluid vh-100 vw-100 p-0">
       <!-- rows and columns -->
       <section class="row w-100">
-         <!-- navigation section -->
-         <section class="navigation col-4 col-35">
-            <!-- search section -->
-            <div class="search d-flex flex-wrap align-items-center">
-               <form id="user-form" class="px-3 d-flex flex-wrap justify-content-center">
-                  <input name="city" id="city" type="text" autofocus="true" placeholder="Enter a City Name" class="form-input w-100 my-3 p-2 rounded-pill text-center"/>
-                  <button id="search-city" type="submit" class="btn-search btn rounded-pill">Weather Me!</button>
-               </form>  
-            </div>
+        <!-- navigation section -->
+        <section class="navigation col-sm-4 col-35 col-12">
+          <!-- search section -->
+          <div class="search d-flex flex-wrap align-items-center">
+            <form
+              id="user-form"
+              class="px-3 d-flex flex-wrap justify-content-center"
+            >
+              <input
+                name="city"
+                id="city"
+                type="text"
+                autofocus="true"
+                placeholder="Enter a City Name"
+                class="form-input w-100 my-3 p-2 rounded-pill text-center"
+              />
+              <button
+                id="search-city"
+                type="submit"
+                class="btn-search btn rounded-pill"
+              >
+                Weather Me!
+              </button>
+            </form>
+          </div>
 
-            <!-- drop-down select section -->
-            <div class="h-50 px-3 text-center">
+          <!-- drop-down select section -->
+          <div class="h-50 px-3 text-center">
+            <select id="cities" class="w-100 p-2 rounded-pill text-center">
+              <option value="Searched Cities">Searched Cities</option>
+            </select>
+          </div>
+        </section>
 
-               <select id="cities" class="w-100 p-2 rounded-pill text-center">
-                  <option value="Searched Cities">Searched Cities</option>
-       
-               </select>
-
-            </div>
-         </section>
-
-         <!-- current weather section -->
-         <section class="col-8 col-85">
-            <!-- current weather section -->
-            <div class="current d-flex flex-wrap align-items-center">
-               <h2 id="currDate"></h2> <span>&nbsp &nbsp </span><h2 id="currTime"></h2>
-               <h2 class="w-100"><span id="curr-city" class="w-100">City</span> Weather</h2>
-
-               <img id="icon" src="http://openweathermap.org/img/wn/10d@2x.png"><h3 id="temp">Is It Cold? Hot?</h3>
-               <h3 class="w-100 ">UV Index: <span id="uv-index">Remember SunScreen!</span></h3> 
-               <h3 class="p-0 m-0">Wind: <span id="wind">Is it windy?</span>&nbsp | &nbsp</h3>
-               <h3 class="p-0 m-0">Humidity: <span id="humidity">Hope it's not moist!</span></h3>
-            </div>
-         </section>
+        <!-- current weather section -->
+        <section class="curr-container col-sm-8 col-85 col-12 p-0">
+          <!-- current weather section -->
+          <div class="current d-flex flex-wrap align-items-center">
+            <h2 id="currDate"></h2>
+            <!-- <span>&nbsp &nbsp </span><h2 id="currTime"></h2> -->
+            <h2 class="w-100">
+              <span id="curr-city" class="w-100">City</span> Weather
+            </h2>
+            <img id="icon" src="http://openweathermap.org/img/wn/10d@2x.png" />
+            <h3 id="temp">Is It Cold? Hot?</h3>
+            <h3 class="w-100">
+              UV Index: <span id="uv-index">Remember Sunscreen!</span>
+            </h3>
+            <h3 class="p-0 m-0">
+              Wind: <span id="wind">*wind sound*</span>&nbsp | &nbsp
+            </h3>
+            <h3 class="p-0 m-0">
+              Humidity: <span id="humidity">*sweating*</span>
+            </h3>
+          </div>
+        </section>
       </section>
 
       <!-- weather forecast section -->
-      <section id="days-container" class="forecast d-flex text-center">
-      </section>
+      <section
+        id="days-container"
+        class="forecast d-flex text-center"
+      ></section>
+    </main>
 
-   </main>
-
-   <!-- jquery link -->
-   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-   <!-- moment link -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-   <!-- luxon link -->
-   <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
-   <!-- js link -->
-   <script src="./assets/script.js"></script>
-
-    
-</body>
+    <!-- jquery link -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- moment link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- luxon link -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+    <!-- js link -->
+    <script src="./assets/script.js"></script>
+  </body>
 </html>
