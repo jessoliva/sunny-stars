@@ -76,12 +76,13 @@
           <!-- current weather section -->
           <div class="current d-flex flex-wrap align-items-center">
             <h2 id="currDate"></h2>
-            <!-- <span>&nbsp &nbsp </span><h2 id="currTime"></h2> -->
-            <h2 class="w-100">
+            <h2 class="w-100 mb-0">
               <span id="curr-city" class="w-100">City</span> Weather
             </h2>
-            <img id="icon" src="http://openweathermap.org/img/wn/10d@2x.png" />
-            <h3 id="temp">Is It Cold? Hot?</h3>
+            <div class="temp-container d-flex">
+               <img id="icon" src="http://openweathermap.org/img/wn/10d@2x.png" />
+               <h3 id="temp">Is It Cold? Hot?</h3>
+            </div>
             <h3 class="w-100">
               UV Index: <span id="uv-index">Remember Sunscreen!</span>
             </h3>

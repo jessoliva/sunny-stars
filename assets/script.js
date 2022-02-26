@@ -228,9 +228,15 @@ function forecast(cityForecast) {
       // display it
       dateEl.textContent = dayDate;
 
+      // create icon container
+      let iconContainer = document.createElement('div');
+      iconContainer.classList = 'img-container';
       // create icon 
       let dayIcon = document.createElement('img');
+      dayIcon.classList = 'icon'
       dayIcon.setAttribute('src','http://openweathermap.org/img/wn/' + cityForecast[i].weather[0].icon + '@2x.png');
+      // append img to container
+      iconContainer.append(dayIcon);
 
       // create min temp element
       let dateMinTemp = document.createElement('h3');
@@ -251,7 +257,7 @@ function forecast(cityForecast) {
       dateHumidity.classList = 'day-humidity';
       dateHumidity.textContent = 'Humidity: ' + cityForecast[i].humidity + '%';
 
-      dayEl.append(dateEl, dayIcon, dateMinTemp, dateMaxTemp, dateWind, dateHumidity);
+      dayEl.append(dateEl, iconContainer, dateMinTemp, dateMaxTemp, dateWind, dateHumidity);
       daysEl.append(dayEl);
    }
 };
