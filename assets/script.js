@@ -314,9 +314,39 @@ function selectCities() {
 selectCities();
 
 
-// NEED TO GIVE CREDIT TO
-// https://stackoverflow.com/questions/32589197/how-can-i-capitalize-the-first-letter-of-each-word-in-a-string-using-javascript
 // capitalize city to display nicely
 function capitalize(city) {
-   return city.replace(/(^\w|\s\w)(\S*)/g, (_,m1,m2) => m1.toUpperCase()+m2.toLowerCase());
+
+   // for each city entered, check if there's a space 
+   // space will be true if there is ' ', and will be false if there isn't
+   let space = city.includes(' ');
+
+   // declare variable
+   let capitalCity;
+
+   // if the city name is more than one word (if space is true)
+   if (space) {
+
+      // split the city name into multiple words and create an array with each word as an element
+      let words = city.split(' ');
+
+      // iterate over each word 
+      for (let i = 0; i < words.length; i++) {
+         // make first letter of each word uppercase, and the rest lowercase
+         words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+      }
+
+      // combine the words
+      capitalCity = words.join(' ');
+
+   }
+   else { // if city has no spaces and only 1 word
+
+      capitalCity = city[0].toUpperCase() + city.substring(1);
+
+   }
+
+   // return the city name capitalized
+   return capitalCity;
 };
+// credit: https://www.freecodecamp.org/news/how-to-capitalize-words-in-javascript/
