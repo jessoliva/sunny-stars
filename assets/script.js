@@ -115,7 +115,6 @@ function latLon(city) {
       alert("Unable to connect to OpenWeatherMap");
    });
 };
-latLon('Sydney');
 
 
 // get current uv index and current weather for city searched with api using lat lon
@@ -136,6 +135,7 @@ function getCurrWeather(cityData) {
 
             // send current weather data to currWeather()
             currWeather(data.current);
+            console.log(data.current)
 
             // send forecast weather to forecast()
             forecast(data.daily);
@@ -152,18 +152,21 @@ function getCurrWeather(cityData) {
    });
 };
 
-
-// display current weather information
-function currWeather(cityWeather) {
+// display current date
+function currDate() {
 
    // reference current date element
    let currentDay = document.getElementById('currDate');
-   // get dt unix timestamp
-   let dtDate = cityWeather.dt;
+   // get current date
+   let newDate = moment().format('dddd, MMMM Do YYYY');
    // display it
-   let newDate = moment.unix(dtDate).format('dddd, MMMM Do YYYY');
-
    currentDay.textContent = newDate;
+
+}
+currDate();
+
+// display current weather information
+function currWeather(cityWeather) {
 
    // reference temp element
    let tempEl = document.getElementById('temp');

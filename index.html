@@ -24,7 +24,7 @@
     <!-- css link -->
     <link rel="stylesheet" href="./assets/style.css" />
 
-    <title>Document</title>
+    <title>WeatherMe</title>
   </head>
 
   <body class="vw-100">
@@ -74,24 +74,27 @@
         <!-- current weather section -->
         <section class="curr-container col-sm-8 col-85 col-12 p-0">
           <!-- current weather section -->
-          <div class="current d-flex flex-wrap align-items-center">
+          <div class="current d-flex flex-wrap justify-content-center align-items-center">
             <h2 id="currDate"></h2>
-            <h2 class="w-100 mb-0">
+            <h2 class="w-100 mb-0 text-center">
               <span id="curr-city" class="w-100">City</span> Weather
             </h2>
-            <div class="temp-container d-flex">
-               <img id="icon" src="http://openweathermap.org/img/wn/10d@2x.png" />
-               <h3 id="temp">Is It Cold? Hot?</h3>
+            <div class="weather-container d-flex">
+               <img id="icon" src="http://openweathermap.org/img/wn/02d@2x.png" />
+               <h3 id="temp"> <i class="fa-solid fa-temperature-high fa-lg"> </i><i class="fa-solid fa-temperature-low fa-lg"></i></h3>
             </div>
-            <h3 class="w-100">
-              UV Index: <span id="uv-index">Remember Sunscreen!</span>
-            </h3>
-            <h3 class="p-0 m-0">
-              Wind: <span id="wind">*wind sound*</span>&nbsp | &nbsp
-            </h3>
-            <h3 class="p-0 m-0">
-              Humidity: <span id="humidity">*sweating*</span>
-            </h3>
+            <div class="weather-container d-flex flex-wrap justify-content-center">
+               <h3>UV Index</h3>
+               <h3 id="uv-index"><i class="fa-solid fa-sun"></i></h3>
+            </div>
+            <div class="weather-container d-flex flex-wrap justify-content-center">
+               <h3 class="w-100 text-center">Wind</h3>
+               <h3 id="wind"><i class="fa-solid fa-wind"></i></h3>
+            </div>
+            <div class="weather-container d-flex flex-wrap justify-content-center">
+               <h3 class="w-100 text-center">Humidity</h3>
+               <h3 id="humidity">*sweating*</h3>
+            </div>
           </div>
         </section>
       </section>
