@@ -135,7 +135,6 @@ function getCurrWeather(cityData) {
 
             // send current weather data to currWeather()
             currWeather(data.current);
-            console.log(data.current)
 
             // send forecast weather to forecast()
             forecast(data.daily);
@@ -223,7 +222,7 @@ function forecast(cityForecast) {
 
       // create date title
       let dateEl = document.createElement('h3');
-      dateEl.classList = 'day-date p-0 text-white';
+      dateEl.classList = 'p-0 text-white';
       // get dt unix timestamp
       let dtDate = cityForecast[i].dt;
       // convert timestamp to date
@@ -233,7 +232,7 @@ function forecast(cityForecast) {
 
       // create day title 
       let weekDayEl = document.createElement('h3');
-      weekDayEl.classList = '';
+
       // convert timestamp to date
       let weekDayDate = moment.unix(dtDate).format('dddd');
       // display it

@@ -159,11 +159,6 @@ body {
    padding-bottom: 5px;
 }
 
-h3 .day-date {
-   margin-bottom: 0;
-   padding-bottom: 0;
-}
-
 .img-container {
    background: var(--secondary);
    width: 100%;
