@@ -158,7 +158,7 @@ function currDate() {
    // reference current date element
    let currentDay = document.getElementById('currDate');
    // get current date
-   let newDate = moment().format('dddd, MMMM Do YYYY');
+   let newDate = moment().format('dddd, MMMM Do, YYYY');
    // display it
    currentDay.textContent = newDate;
 
@@ -231,6 +231,14 @@ function forecast(cityForecast) {
       // display it
       dateEl.textContent = dayDate;
 
+      // create day title 
+      let weekDayEl = document.createElement('h3');
+      weekDayEl.classList = '';
+      // convert timestamp to date
+      let weekDayDate = moment.unix(dtDate).format('dddd');
+      // display it
+      weekDayEl.textContent = weekDayDate;
+
       // create icon container
       let iconContainer = document.createElement('div');
       iconContainer.classList = 'img-container';
@@ -260,7 +268,7 @@ function forecast(cityForecast) {
       dateHumidity.classList = 'day-humidity';
       dateHumidity.textContent = 'Humidity: ' + cityForecast[i].humidity + '%';
 
-      dayEl.append(dateEl, iconContainer, dateMinTemp, dateMaxTemp, dateWind, dateHumidity);
+      dayEl.append(dateEl, weekDayEl, iconContainer, dateMinTemp, dateMaxTemp, dateWind, dateHumidity);
       daysEl.append(dayEl);
    }
 };
