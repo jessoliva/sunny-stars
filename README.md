@@ -57,11 +57,15 @@ I added a function to capitalize the cities searched when displayed on the site.
 
 At the main page of the sunny-stars repository click on 'Fork' on the right hand side. This will clone the repository onto your GitHub!
 
-IMAGE
+<p align="left" width="100%">
+&emsp;&emsp;&emsp;<img src="assets/images/code1.jpeg" alt="start screen" width="100%" align="top"> 
+</p>
 
 Then go to the main page of the forked repository on your GitHub and click on '<> Code'. From there, copy your preferred URL to clone the repository onto your computer. My go to is SSH!
 
-IMAGE
+<p align="left" width="100%">
+&emsp;&emsp;&emsp;<img src="assets/images/code2.jpeg" alt="start screen" width="100%" align="top"> 
+</p>
 
 Go to your terminal or the VSCode terminal, cd into the directory you want the cloned repository to be located in and enter the following command and replace the placeholder with the URL link you copied:
 
