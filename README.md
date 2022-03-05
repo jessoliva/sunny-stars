@@ -2,7 +2,7 @@
 
 Whether you're planning a trip or looking for a new place to live because you're having a crisis, utilize this website to get the current and future weather for any city! It'll help you plan your trip accordingly or check if the new city you want to move to is warm ☀️ or cool ☃️ enough for you 😊
 
-[Visit SunnySkies ✨](https://github.com/jess-oliva/sunny-stars)
+[Visit SunnySkies ✨](https://jessoliva.github.io/sunny-stars/)
 
 ## 📚&nbsp; Table of Contents
 
