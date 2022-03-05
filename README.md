@@ -97,7 +97,7 @@ Additionally, the website includes persistent search history data, so the cities
 
 ## ✏️&nbsp; Contribution Guidelines
 
-jess
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](https://www.contributor-covenant.org/)
 
 ## 👨‍👩‍👧‍👦&nbsp; Credits
 
