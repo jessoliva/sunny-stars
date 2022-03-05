@@ -46,7 +46,6 @@ function userCitySearch(event) {
       selectCities();
    }
    // include() returns true if the element is contained in the array, and false if otherwise
-   // source: https://bobbyhadz.com/blog/javascript-array-push-if-not-exist#:~:text=over%20includes()%20.-,To%20push%20an%20element%20in%20an%20array%20if%20it%20doesn,()%20method%20to%20add%20it.
 
    // run saveCities() to save cities to local storage
    saveCities();
@@ -74,8 +73,6 @@ function selectFormHandler() {
 
 }
 selectEl.addEventListener('change', selectFormHandler);
-// credit: https://stackoverflow.com/questions/46329633/select-value-without-button
-// credit https://www.w3schools.com/jsref/event_onchange.asp
 
 
 // convert city searched into lat long with api
@@ -151,6 +148,7 @@ function getCurrWeather(cityData) {
    });
 };
 
+
 // display current date
 function currDate() {
 
@@ -163,6 +161,7 @@ function currDate() {
 
 }
 currDate();
+
 
 // display current weather information
 function currWeather(cityWeather) {
@@ -356,4 +355,3 @@ function capitalize(city) {
    // return the city name capitalized
    return capitalCity;
 };
-// credit: https://www.freecodecamp.org/news/how-to-capitalize-words-in-javascript/
