@@ -27,7 +27,7 @@ I decided to display the cities searched by the user that are saved in local sto
 
 When refreshed, the cities in local storage are automatically loaded and displayed in the dropdown. However, I came across the issue where the city the user searched was not added into the dropdown menu until the site was refreshed. I wanted the city to be added and displayed as soon as the user searched it. So I called the function that displayed the cities in the dropdown within one of the else if condition with the .includes() method.
 
-I added a function to capitalize the cities searched when displayed on the site. I had to take into account city names with one word vs multiple words. To differentiate the two, I was able to use the .includes() method here to look for a space ' ' within the city name. Then the function would capitalize the city name accordingly.
+I added a function to capitalize the cities searched when displayed on the site. I had to take into account city names with one word vs multiple words. To differentiate the two, I was able to use the .includes() method here to look for a space ' ' within the city name. Then the function would capitalize the city name accordingly. I used this source: [freecodecamp](https://www.freecodecamp.org/news/how-to-capitalize-words-in-javascript/) to help me learn about how to capitalize words and sentences! I was able to combine a few functions I learned there with the .includes method.
 
 ## 🌼&nbsp; Features
 
